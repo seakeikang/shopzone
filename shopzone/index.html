@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopZone – Your Modern Store</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <div class="logo">Shop<span>Zone</span></div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <h1>Find What You <em>Love</em></h1>
+  <p>50+ products across 5 categories — electronics, clothing, food, books & sports.</p>
+</section>
+
+<!-- ===== SEARCH & FILTER ===== -->
+<section class="controls">
+  <input type="text" id="searchInput" placeholder="🔍  Search products by name…" oninput="applyFilters()" />
+  <div class="filter-row">
+    <select id="categoryFilter" onchange="applyFilters()">
+      <option value="">All Categories</option>
+      <option value="Electronics">Electronics</option>
+      <option value="Clothing">Clothing</option>
+      <option value="Food">Food</option>
+      <option value="Books">Books</option>
+      <option value="Sports">Sports</option>
+    </select>
+    <select id="priceFilter" onchange="applyFilters()">
+      <option value="">Any Price</option>
+      <option value="0-20">Under $20</option>
+      <option value="20-50">$20 – $50</option>
+      <option value="50-100">$50 – $100</option>
+      <option value="100-9999">Over $100</option>
+    </select>
+    <button class="reset-btn" onclick="resetFilters()">✕ Reset</button>
+  </div>
+</section>
+
+<!-- ===== PRODUCT GRID ===== -->
+<main>
+  <p class="result-count" id="resultCount"></p>
+  <div class="product-grid" id="productGrid"></div>
+  <p class="no-results" id="noResults" style="display:none;">No products found. Try a different search!</p>
+</main>
+
+<!-- ===== CART SIDEBAR ===== -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <button onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty">Your cart is empty 🛍️</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">Total: <strong id="cartTotal">$0.00</strong></div>
+    <button class="checkout-btn" onclick="alert('Thank you for your order! 🎉')">Checkout</button>
+  </div>
+</aside>
+
+<!-- ===== NAME EDIT MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h3>Edit Product Name</h3>
+    <input type="text" id="modalInput" placeholder="Enter new name…" />
+    <div class="modal-btns">
+      <button onclick="saveModal()">Save</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
