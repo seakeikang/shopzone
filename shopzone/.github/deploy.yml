@@ -1,0 +1,23 @@
+name: Docker Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Stop old container
+        run: docker rm -f website || exit 0
+
+      - name: Build Docker image
+        run: docker build -t website .
+
+      - name: Run Docker container
+        run: docker run -d --name website -p 80:80 website
